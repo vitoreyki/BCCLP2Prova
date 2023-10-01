@@ -1,4 +1,6 @@
+import { useState } from "react";
 export default function Produto(props){
+    const [quantidade, setQuantidade] = useState(1);
     return(
         <div style={{
             width: '200px',
@@ -33,6 +35,33 @@ export default function Produto(props){
                 
             }}id="opinioes-produoto">
                 <span>{((props.produto ? props.produto.rating.rate : 0) * 20) || 0}% gostaram</span>
+            </div>
+            <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+                id='quantidade-selecionada'>
+                <p style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    height: '40px',
+                    margin: '0px',
+                    padding: '0px',
+                    marginRight: '10px',
+                }}>Quantidade:</p>
+                <input 
+                    style={{
+                        width: '40px',
+                        border: '0px',
+                        outline: 'none',
+                    }}
+                    type="number" 
+                    value={quantidade} 
+                    onChange={(e) => setQuantidade(e.target.value)} 
+                    step={1}
+                    min={1}/>
             </div>
             <div id='botao-comprar'>
                 <button 
