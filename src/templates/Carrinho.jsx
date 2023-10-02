@@ -1,4 +1,5 @@
 export default function Carrinho(props) {
+
     return (
         <div style={{
             display: 'flex',
@@ -18,11 +19,13 @@ export default function Carrinho(props) {
                 padding: '2px',
                 width: '40px'
             }} id='icone-carrinho'>
-                <button id='botao-carrinho'style={{
-                    backgroundColor: "inherit",
-                    border: '0px',
-                }
-                } type='button'>
+                <a id='botao-carrinho'
+                href="/lista"
+                    style={{
+                        backgroundColor: "inherit",
+                        border: '0px',
+                    }
+                    } type='button'>
                     <svg xmlns="http://www.w3.org/2000/svg"
                         width="32"
                         height="32"
@@ -31,7 +34,7 @@ export default function Carrinho(props) {
                         viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
-                </button>
+                </a>
             </div>
             <div id='meu-carrinho' style={{
                 position: 'relative',
@@ -49,7 +52,7 @@ export default function Carrinho(props) {
                 <p style={{
                     margin: '0px',
                     padding: '0px',
-                }}>{props.qtdCarrinho || 0} item</p>
+                }}>{props.qtdCarrinho} item</p>
             </div>
             <div id='segurança' style={{
                 display: 'flex',

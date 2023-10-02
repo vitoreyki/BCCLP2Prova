@@ -1,6 +1,7 @@
+import Compras from "../templates/Compras";
 import Produto from "../templates/Produto";
 
-export default function GradeProdutos(props){
+export default function GradeCompras(props){
 
     if (props.listaProdutos){
         return(
@@ -12,8 +13,8 @@ export default function GradeProdutos(props){
                 margin: '10px',
                 padding: '10px',
                 gap: '20px'}}>
-                    {props.listaProdutos.map((produto) => (
-                        <Produto key={produto.id} produto={produto}/>
+                    {props.listaProdutos.map((produto, index) => (
+                        <Compras key={index} produto={produto}/>
                     ))}
             </div>
         )

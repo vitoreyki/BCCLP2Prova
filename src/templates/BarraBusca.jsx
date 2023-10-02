@@ -1,5 +1,20 @@
+import { useEffect, useState } from 'react';
 import Carrinho from './Carrinho';
 export default function BarraBusca(props) {
+
+    const [quantidade, setQuantidade] = useState(0)
+
+    useEffect(() => {
+        let qtde = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            const object = JSON.parse(localStorage.getItem(`produto`+i));
+            qtde = qtde + Number(object.quantity)
+            setQuantidade(qtde)
+        }
+
+        return () => {}
+    })
+
     return (
         <>
             <div style={{
@@ -58,7 +73,7 @@ export default function BarraBusca(props) {
                     >Buscar</button>
                 </div>
                 <div>
-                    <Carrinho />
+                    <Carrinho qtdCarrinho={quantidade}/>
                 </div>
             </div>
             <div style={{

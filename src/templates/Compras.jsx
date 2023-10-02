@@ -1,17 +1,22 @@
 import { Alert } from "bootstrap";
 import { useState } from "react";
-export default function Produto(props) {
-    const [quantidade, setQuantidade] = useState(1);
-    const handleSubmit = () => {
-        if (window.confirm("Deseja adicionar ao carrinho?") == true) {
+export default function Compras(props) {
+    const [quantidade, setQuantidade] = useState(props.produto.quantity || 1);
+    const handleEdit = () => {
+        if (window.confirm("Deseja editar o produto?") == true) {
             const object = props.produto;
-            object.quantity = quantidade;
-            object.index = localStorage.length
-
+            object.quantity = quantidade
             console.log(object)
 
-            let index = String(localStorage.length)
-            localStorage.setItem("produto" + index, JSON.stringify(object));
+            localStorage.setItem("produto" + object.index, JSON.stringify(object));
+            window.location.reload()
+        }
+    }
+
+    const handleDelete = () => {
+        if (window.confirm("Deseja deletar o produto?") == true) {
+            const object = props.produto;
+            localStorage.removeItem("produto" + object.index);
             window.location.reload()
         }
     }
@@ -73,16 +78,32 @@ export default function Produto(props) {
                         outline: 'none',
                     }}
                     type="number"
-                    value={props.produto.quantity || quantidade}
+                    value={quantidade}
                     onChange={(e) => {
                         setQuantidade(e.target.value)
                     }}
                     step={1}
                     min={1} />
             </div>
-            <div id='botao-comprar'>
+            <div id='botao-editar'>
                 <button
-                    onClick={handleSubmit}
+                    onClick={handleEdit}
+                    style={{
+                        backgroundColor: 'rgb(255,60,60)',
+                        color: 'white',
+                        border: '0px',
+                        borderRadius: '10px',
+                        height: '40px',
+                        width: '120px',
+                        marginBottom: '5px'
+                    }}
+                    type='button'>
+                    Editar
+                </button>
+            </div>
+            <div id='botao-excluir'>
+                <button
+                    onClick={handleDelete}
                     style={{
                         backgroundColor: 'rgb(255,60,60)',
                         color: 'white',
@@ -92,7 +113,7 @@ export default function Produto(props) {
                         width: '120px',
                     }}
                     type='button'>
-                    Comprar
+                    Deletar
                 </button>
             </div>
         </div>
